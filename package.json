@@ -1,0 +1,27 @@
+{
+  "name": "movisalud",
+  "version": "1.0.0",
+  "description": "Plataforma de intermediación de atención de salud a domicilio en Santiago de Chile",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "salud",
+    "domicilio",
+    "santiago",
+    "kinesiologia",
+    "tens",
+    "fonoaudiologia",
+    "nutricion"
+  ],
+  "author": "MOVISALUD Team",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "multer": "^1.4.5-lts.1",
+    "nodemailer": "^10.0.0"
+  }
+}
