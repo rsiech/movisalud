@@ -495,7 +495,10 @@ app.get('/api/webpay/mock-gateway', (req, res) => {
     <body class="bg-slate-100 min-h-screen flex items-center justify-center p-4">
       <div class="bg-white max-w-md w-full rounded-3xl shadow-xl border border-slate-200 p-6 space-y-5">
         <div class="flex items-center justify-between border-b pb-4">
-          <span class="font-extrabold text-red-600 text-xl tracking-tight">Webpay Plus</span>
+          <div class="flex items-center space-x-2">
+            <img src="/images/logo_movisalud_def_3.png" alt="MOVISALUD" class="h-8 w-auto object-contain" />
+            <span class="font-extrabold text-red-600 text-base tracking-tight">Webpay Plus</span>
+          </div>
           <span class="bg-amber-100 text-amber-800 text-[10px] font-bold px-2 py-0.5 rounded-full">Integración Transbank</span>
         </div>
         <div>
@@ -1049,7 +1052,11 @@ app.post('/api/admin/payouts/mark-transferred', (req, res) => {
 });
 
 // Ciudades, Comunas y Catálogos
-app.get('/api/cities', (req, res) => res.json(readJson(CITIES_FILE)));
+app.get('/api/cities', (req, res) => {
+  const cities = readJson(CITIES_FILE);
+  cities.sort((a, b) => a.name.localeCompare(b.name, 'es', { sensitivity: 'base' }));
+  res.json(cities);
+});
 
 // Administración de Ciudades
 app.post('/api/admin/cities', (req, res) => {
@@ -1072,6 +1079,7 @@ app.post('/api/admin/cities', (req, res) => {
   };
 
   cities.push(newCity);
+  cities.sort((a, b) => a.name.localeCompare(b.name, 'es', { sensitivity: 'base' }));
   writeJson(CITIES_FILE, cities);
   res.status(201).json({ message: 'Ciudad agregada con éxito', city: newCity });
 });
@@ -1096,6 +1104,7 @@ app.get('/api/comunas', (req, res) => {
   const { city } = req.query;
   let comunas = readJson(COMUNAS_FILE);
   if (city) comunas = comunas.filter(c => c.cityId === city);
+  comunas.sort((a, b) => a.name.localeCompare(b.name, 'es', { sensitivity: 'base' }));
   res.json(comunas);
 });
 
@@ -1119,6 +1128,7 @@ app.post('/api/admin/comunas', (req, res) => {
   };
 
   comunas.push(newComuna);
+  comunas.sort((a, b) => a.name.localeCompare(b.name, 'es', { sensitivity: 'base' }));
   writeJson(COMUNAS_FILE, comunas);
   res.status(201).json({ message: 'Comuna agregada con éxito', comuna: newComuna });
 });
