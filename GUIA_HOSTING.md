@@ -52,13 +52,18 @@ La mayoría de los hostings modernos incluyen la herramienta **"Setup Node.js Ap
    BASE_URL=https://www.movisalud.cl
    DOMAIN=movisalud.cl
    
+   # Configuración de Correo Saliente (Requiere Autenticación de Usuario y Contraseña)
    SMTP_HOST=mail.movisalud.cl
    SMTP_PORT=465
    SMTP_USER=contacto@movisalud.cl
-   SMTP_PASS=tu_contraseña_del_correo
+   SMTP_PASS=tu_contraseña_del_correo_en_cpanel
    SMTP_FROM="MOVISALUD Chile <contacto@movisalud.cl>"
    ```
-6. Presiona **"Restart Application"**. ¡Tu sitio ya estará en vivo en `https://www.movisalud.cl`!
+   > 💡 **Nota cPanel:** Asegúrate de que `SMTP_USER` sea la cuenta de correo completa (ej: `contacto@movisalud.cl`) y que `SMTP_PASS` sea exactamente la contraseña que le asignaste al crear la cuenta en cPanel. Si tu explorador de archivos en cPanel oculta los archivos con punto como `.env`, también puedes configurar estos mismos valores en `data/site_config.json`.
+   >
+   > 🧪 **Herramienta de Prueba en Vivo:** Una vez iniciada la app, ingresa a la **Mesa de Validación** y en la tarjeta *Buzón de Despacho de Correos* haz clic en **"Diagnóstico SMTP"** para enviar un correo de prueba en vivo y verificar la autenticación en tiempo real.
+
+6. Presiona **"Restart Application"** en cPanel. ¡Tu sitio ya estará en vivo y enviando correos reales!
 
 ---
 
